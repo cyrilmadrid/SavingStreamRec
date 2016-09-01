@@ -1,5 +1,4 @@
 import csv
-import logging
 import locale
 import os
 import sys
@@ -54,7 +53,7 @@ def getRecombinedInterest(recDate, partFile, txFile):
         fundData = dict([(int(p["Loan part ID"]), p) for p in csv.DictReader(StringIO(txData)) if p["Transaction type"] == "Loan part fund"])
         combo = {}
         for d in diffs:
-            origSize = abs(float(fundData[d]["Txn Amount"]))
+            origSize = abs(locale.atof(fundData[d]["Txn Amount"]))
             currSize = locale.atof(partData[d]["Amount"])
             loanName = partData[d]["Asset Details"]
             startDate = partData[d]["Start Date"]
@@ -83,7 +82,6 @@ def getRecombinedInterest(recDate, partFile, txFile):
     return calc, actual
 
 def main():
-    logging.basicConfig(format="%(asctime)s: %(msg)s")
     locale.setlocale(locale.LC_ALL, '' if os.name == "nt" else 'en_GB')
     partFile = sys.argv[1]
     txFile = sys.argv[2]
