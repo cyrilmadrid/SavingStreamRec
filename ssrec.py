@@ -91,7 +91,6 @@ def main():
         if not sum(calc.values()) and not sum(actual.values()):
             break
         print "\nRec Date: %s" % recDate
-        errors = []
         for c in calc:
             if calc[c] != actual.get(c, 0):
                 print "Rec Failure %8d: Calc: %8.2f, Actual: %8.2f" % (c, calc[c], actual.get(c, 0))
