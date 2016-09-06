@@ -138,8 +138,8 @@ def main():
             if expected[c] != actual.get(c, 0):
                 print "Rec Diff    %8d: Expected: %8.2f, Actual: %8.2f" % (c, expected[c], actual.get(c, 0))
         for a in actual:
-            if actual[a] != expected.get(a, 0):
-                print "Rec Diff    %8d: Expected: %8.2f, Actual: %8.2f" % (a, expected.get(a, 0), actual[a])
+            if a not in expected:
+                print "Rec Diff    %8d: Expected: %8.2f, Actual: %8.2f" % (a, 0, actual[a])
         expectedTotal = round(sum(expected.values()), 2)
         actualTotal = round(sum(actual.values()), 2)
         print "Rec Total %s: Expected: %8.2f, Actual: %8.2f" % (recDate, expectedTotal, actualTotal)
